@@ -1,0 +1,118 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+name: resl
+scopeName: source.resl
+fileTypes: [resl]
+uuid: 5899f948-bdc0-4cb9-b282-50efe7c6d15d
+patterns:
+- include: '#comment'
+- include: '#package'
+- include: '#import'
+- include: '#type'
+- include: '#component'
+repository:
+  comment:
+    patterns:
+    - name: comment.block.resl
+      begin: \-\-
+      end: $
+
+  package:
+    begin: (package)\s+([A-Za-z][A-Za-z0-9_\.]*)
+    beginCaptures:
+      '1': {name: keyword.control.import.resl}
+    end: $
+
+  import:
+    begin: (import)\s+([A-Za-z][A-Za-z0-9_.]*)
+    beginCaptures:
+      '1': {name: keyword.control.import.resl}
+    end: $
+
+  internal:
+    match: (int|double|string)
+    name: storage.type.resl
+
+  word:
+    match: ([A-Za-z][A-Za-z0-9_.]*)
+    name: entity.name.class.resl
+
+  normal_field:
+    begin: ((int|double|string)|([A-Za-z][A-Za-z0-9_.]*))\s+([A-Za-z][A-Za-z0-9_.]*)
+    beginCaptures:
+      '2': {name: storage.type.resl}
+      '3': {name: entity.name.class.resl}
+      '4': {name: variable}
+    end: \s*=\s*(\d+)
+    endCaptures:
+      '1': {name: constant.numeric.resl}
+
+  map_field:
+    begin: (map)\s*\<
+    beginCaptures:
+      '1': {name: storage.type.resl}
+    end: \>\s*([A-Za-z][A-Za-z0-9_.]*)\s*=\s*(\d+)\n
+    endCaptures:
+      '2': {name: constant.numeric.resl}
+      patterns:
+      - include: '#internal'
+      - include: '#word'
+
+  list_field:
+    begin: (list)\s*\<
+    beginCaptures:
+      '1': {name: storage.type.resl}
+    end: '\>\s*([A-Za-z][A-Za-z0-9_.]*)\s*=\s*(\d+)\n'
+    endCaptures:
+      '2': {name: constant.numeric.resl}
+    patterns:
+    - include: '#internal'
+    - include: '#word'
+
+  event_field:
+    begin: (event)\s+([A-Za-z][A-Za-z0-9_.]*)\s*\(\s*([A-Za-z][A-Za-z0-9_.]*)\s*\)
+    beginCaptures:
+      '1': {name: keyword.operator.word}
+      '2': {name: variable}
+      '3': {name: entity.name.class.resl}
+    end: \s*=\s*(\d+)
+    endCaptures:
+      '1': {name: constant.numeric.resl}
+
+  command_field:
+    begin: (command)\s+([A-Za-z][A-Za-z0-9_.]*)\s*\(([A-Za-z][A-Za-z0-9_.]*)\)\s*([A-Za-z][A-Za-z0-9_.]*)
+    beginCaptures:
+      '1': {name: keyword.operator.word}
+      '2': {name: variable}
+      '3': {name: entity.name.class.resl}
+      '4': {name: entity.name.class.resl}
+    end: \s*=\s*(\d+)
+    endCaptures:
+      '1': {name: constant.numeric.resl}
+
+  type:
+    begin: (type)\s+([A-Za-z][A-Za-z0-9_\.]*)\s*\{
+    beginCaptures:
+      '1': {name: keyword.operator.word}
+      '2': {name: entity.name.struct.resl}
+    end: \}
+    patterns:
+    - include: '#comment'
+    - include: '#normal_field'
+    - include: '#map_field'
+    - include: '#list_field'
+    - include: '#type'
+
+  component:
+    begin: (component)\s+([A-Za-z][A-Za-z0-9_\.]*)\s*(\d+)\s*\{
+    beginCaptures:
+      '1': {name: keyword.operator.word}
+      '2': {name: entity.name.class.resl}
+      '3': {name: constant.numeric.resl}
+    end: \}
+    patterns:
+    - include: '#comment'
+    - include: '#normal_field'
+    - include: '#map_field'
+    - include: '#list_field'
+    - include: '#event_field'
+    - include: '#command_field'

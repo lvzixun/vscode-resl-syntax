@@ -1,0 +1,26 @@
+{
+    "name": "vscode-resl",
+    "publisher": "zixun",
+    "displayName": "resl",
+    "description": "resl syntaxes",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.31.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "resl",
+            "aliases": ["resl", "resl"],
+            "extensions": [".resl"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "resl",
+            "scopeName": "source.resl",
+            "path": "./syntaxes/resl.tmLanguage"
+        }]
+    }
+}
