@@ -50,7 +50,7 @@ repository:
     begin: (map)\s*\<
     beginCaptures:
       '1': {name: storage.type.resl}
-    end: \>\s*([A-Za-z][A-Za-z0-9_.]*)\s*=\s*(\d+)\n
+    end: \>\s*([A-Za-z][A-Za-z0-9_.]*)\s*=\s*(\d+)
     endCaptures:
       '2': {name: constant.numeric.resl}
       patterns:
@@ -61,7 +61,7 @@ repository:
     begin: (list)\s*\<
     beginCaptures:
       '1': {name: storage.type.resl}
-    end: '\>\s*([A-Za-z][A-Za-z0-9_.]*)\s*=\s*(\d+)\n'
+    end: '\>\s*([A-Za-z][A-Za-z0-9_.]*)\s*=\s*(\d+)'
     endCaptures:
       '2': {name: constant.numeric.resl}
     patterns:
