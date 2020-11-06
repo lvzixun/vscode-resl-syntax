@@ -37,14 +37,12 @@ repository:
     name: entity.name.class.resl
 
   normal_field:
-    begin: ((int|double|string)|([A-Za-z][A-Za-z0-9_.]*))\s+([A-Za-z][A-Za-z0-9_.]*)
-    beginCaptures:
+    match: ((int|double|string)|([A-Za-z][A-Za-z0-9_.]*))\s+([A-Za-z][A-Za-z0-9_.]*)\s*=\s*(\d+)
+    captures:
       '2': {name: storage.type.resl}
       '3': {name: entity.name.class.resl}
       '4': {name: variable}
-    end: \s*=\s*(\d+)
-    endCaptures:
-      '1': {name: constant.numeric.resl}
+      '5': {name: constant.numeric.resl}
 
   map_field:
     begin: (map)\s*\<
@@ -53,9 +51,9 @@ repository:
     end: \>\s*([A-Za-z][A-Za-z0-9_.]*)\s*=\s*(\d+)
     endCaptures:
       '2': {name: constant.numeric.resl}
-      patterns:
-      - include: '#internal'
-      - include: '#word'
+    patterns:
+    - include: '#internal'
+    - include: '#word'
 
   list_field:
     begin: (list)\s*\<
@@ -69,25 +67,21 @@ repository:
     - include: '#word'
 
   event_field:
-    begin: (event)\s+([A-Za-z][A-Za-z0-9_.]*)\s*\(\s*([A-Za-z][A-Za-z0-9_.]*)\s*\)
-    beginCaptures:
+    match: (event)\s+([A-Za-z][A-Za-z0-9_.]*)\s*\(\s*([A-Za-z][A-Za-z0-9_.]*)\s*\)\s*=\s*(\d+)
+    captures:
       '1': {name: keyword.operator.word}
       '2': {name: variable}
       '3': {name: entity.name.class.resl}
-    end: \s*=\s*(\d+)
-    endCaptures:
-      '1': {name: constant.numeric.resl}
+      '4': {name: constant.numeric.resl}
 
   command_field:
-    begin: (command)\s+([A-Za-z][A-Za-z0-9_.]*)\s*\(([A-Za-z][A-Za-z0-9_.]*)\)\s*([A-Za-z][A-Za-z0-9_.]*)
-    beginCaptures:
+    match: (command)\s+([A-Za-z][A-Za-z0-9_.]*)\s*\(([A-Za-z][A-Za-z0-9_.]*)\)\s*([A-Za-z][A-Za-z0-9_.]*)\s*=\s*(\d+)
+    captures:
       '1': {name: keyword.operator.word}
       '2': {name: variable}
       '3': {name: entity.name.class.resl}
       '4': {name: entity.name.class.resl}
-    end: \s*=\s*(\d+)
-    endCaptures:
-      '1': {name: constant.numeric.resl}
+      '5': {name: constant.numeric.resl}
 
   type:
     begin: (type)\s+([A-Za-z][A-Za-z0-9_\.]*)\s*\{
