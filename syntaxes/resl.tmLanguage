@@ -84,7 +84,7 @@
       <key>internal</key>
       <dict>
         <key>match</key>
-        <string>(int|double|string)</string>
+        <string>(int|double|string|bool)</string>
         <key>name</key>
         <string>storage.type.resl</string>
       </dict>
@@ -97,9 +97,9 @@
       </dict>
       <key>normal_field</key>
       <dict>
-        <key>match</key>
-        <string>((int|double|string)|([A-Za-z][A-Za-z0-9_.]*))\s+([A-Za-z][A-Za-z0-9_.]*)\s*=\s*(\d+)</string>
-        <key>captures</key>
+        <key>begin</key>
+        <string>((int|double|string|bool)|([A-Za-z][A-Za-z0-9_.]*))\s+([A-Za-z][A-Za-z0-9_.]*)</string>
+        <key>beginCaptures</key>
         <dict>
           <key>2</key>
           <dict>
@@ -116,7 +116,12 @@
             <key>name</key>
             <string>variable</string>
           </dict>
-          <key>5</key>
+        </dict>
+        <key>end</key>
+        <string>\s*=\s*(\d+)</string>
+        <key>endCaptures</key>
+        <dict>
+          <key>1</key>
           <dict>
             <key>name</key>
             <string>constant.numeric.resl</string>
@@ -136,7 +141,7 @@
           </dict>
         </dict>
         <key>end</key>
-        <string>\&gt;\s*([A-Za-z][A-Za-z0-9_.]*)\s*=\s*(\d+)</string>
+        <string>\&gt;\s*([A-Za-z][A-Za-z0-9_.]*)\s*=\s*(\d+)\n</string>
         <key>endCaptures</key>
         <dict>
           <key>2</key>
@@ -144,18 +149,18 @@
             <key>name</key>
             <string>constant.numeric.resl</string>
           </dict>
+          <key>patterns</key>
+          <array>
+            <dict>
+              <key>include</key>
+              <string>#internal</string>
+            </dict>
+            <dict>
+              <key>include</key>
+              <string>#word</string>
+            </dict>
+          </array>
         </dict>
-        <key>patterns</key>
-        <array>
-          <dict>
-            <key>include</key>
-            <string>#internal</string>
-          </dict>
-          <dict>
-            <key>include</key>
-            <string>#word</string>
-          </dict>
-        </array>
       </dict>
       <key>list_field</key>
       <dict>
@@ -170,7 +175,7 @@
           </dict>
         </dict>
         <key>end</key>
-        <string>\&gt;\s*([A-Za-z][A-Za-z0-9_.]*)\s*=\s*(\d+)</string>
+        <string>\&gt;\s*([A-Za-z][A-Za-z0-9_.]*)\s*=\s*(\d+)\n</string>
         <key>endCaptures</key>
         <dict>
           <key>2</key>
@@ -193,9 +198,9 @@
       </dict>
       <key>event_field</key>
       <dict>
-        <key>match</key>
-        <string>(event)\s+([A-Za-z][A-Za-z0-9_.]*)\s*\(\s*([A-Za-z][A-Za-z0-9_.]*)\s*\)\s*=\s*(\d+)</string>
-        <key>captures</key>
+        <key>begin</key>
+        <string>(event)\s+([A-Za-z][A-Za-z0-9_.]*)\s*\(\s*([A-Za-z][A-Za-z0-9_.]*)?\s*\)</string>
+        <key>beginCaptures</key>
         <dict>
           <key>1</key>
           <dict>
@@ -212,7 +217,12 @@
             <key>name</key>
             <string>entity.name.class.resl</string>
           </dict>
-          <key>4</key>
+        </dict>
+        <key>end</key>
+        <string>\s*=\s*(\d+)</string>
+        <key>endCaptures</key>
+        <dict>
+          <key>1</key>
           <dict>
             <key>name</key>
             <string>constant.numeric.resl</string>
@@ -221,9 +231,9 @@
       </dict>
       <key>command_field</key>
       <dict>
-        <key>match</key>
-        <string>(command)\s+([A-Za-z][A-Za-z0-9_.]*)\s*\(([A-Za-z][A-Za-z0-9_.]*)\)\s*([A-Za-z][A-Za-z0-9_.]*)\s*=\s*(\d+)</string>
-        <key>captures</key>
+        <key>begin</key>
+        <string>(command)\s+([A-Za-z][A-Za-z0-9_.]*)\s*\(([A-Za-z][A-Za-z0-9_.]*)\)\s*([A-Za-z][A-Za-z0-9_.]*)?</string>
+        <key>beginCaptures</key>
         <dict>
           <key>1</key>
           <dict>
@@ -245,7 +255,12 @@
             <key>name</key>
             <string>entity.name.class.resl</string>
           </dict>
-          <key>5</key>
+        </dict>
+        <key>end</key>
+        <string>\s*=\s*(\d+)</string>
+        <key>endCaptures</key>
+        <dict>
+          <key>1</key>
           <dict>
             <key>name</key>
             <string>constant.numeric.resl</string>
