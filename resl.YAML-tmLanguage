@@ -37,14 +37,12 @@ repository:
     name: entity.name.class.resl
 
   normal_field:
-    begin: ((int|double|string|bool)|([A-Za-z][A-Za-z0-9_\.]*))\s+([A-Za-z][A-Za-z0-9_\.]*)
-    beginCaptures:
+    match: ((int|double|string|bool)|([A-Za-z][A-Za-z0-9_\.]*))\s+([A-Za-z][A-Za-z0-9_\.]*)\s*=\s*(\d+)
+    captures:
       '2': {name: storage.type.resl}
       '3': {name: entity.name.class.resl}
       '4': {name: variable}
-    end: \s*=\s*(\d+)
-    endCaptures:
-      '1': {name: constant.numeric.resl}
+      '5': {name: constant.numeric.resl}
 
   map_field:
     begin: (map)\s*\<
@@ -71,25 +69,21 @@ repository:
     - include: '#word'
 
   event_field:
-    begin: (event)\s+([A-Za-z][A-Za-z0-9_\.]*)\s*\(\s*([A-Za-z][A-Za-z0-9_\.]*)?\s*\)
-    beginCaptures:
-      '1': {name: keyword.operator.word}
+    match: (event)\s+([A-Za-z][A-Za-z0-9_\.]*)\s*\(\s*([A-Za-z][A-Za-z0-9_\.]*)?\s*\)\s*=\s*(\d+)
+    captures:
+      '1': {name: variable.parameter.resl}
       '2': {name: variable}
       '3': {name: entity.name.class.resl}
-    end: \s*=\s*(\d+)
-    endCaptures:
-      '1': {name: constant.numeric.resl}
+      '4': {name: constant.numeric.resl}
 
   command_field:
-    begin: (command)\s+([A-Za-z][A-Za-z0-9_\.]*)\s*\(([A-Za-z][A-Za-z0-9_\.]*)?\)\s*([A-Za-z][A-Za-z0-9_\.]*)?
-    beginCaptures:
-      '1': {name: keyword.operator.word}
+    match: (command)\s+([A-Za-z][A-Za-z0-9_\.]*)\s*\(\s*([A-Za-z][A-Za-z0-9_\.]*)?\s*\)\s*([A-Za-z][A-Za-z0-9_\.]*)?\s*=\s*(\d+)
+    captures:
+      '1': {name: variable.function.resl}
       '2': {name: variable}
       '3': {name: entity.name.class.resl}
       '4': {name: entity.name.class.resl}
-    end: \s*=\s*(\d+)
-    endCaptures:
-      '1': {name: constant.numeric.resl}
+      '5': {name: constant.numeric.resl}
 
   type:
     begin: (type)\s+([A-Za-z][A-Za-z0-9_\.]*)\s*\{
@@ -113,8 +107,8 @@ repository:
     end: \}
     patterns:
     - include: '#comment'
-    - include: '#normal_field'
     - include: '#map_field'
     - include: '#list_field'
     - include: '#event_field'
     - include: '#command_field'
+    - include: '#normal_field'
