@@ -23,7 +23,7 @@ repository:
     end: $
 
   import:
-    begin: (import)\s+([A-Za-z][A-Za-z0-9_.]*)
+    begin: (import)\s+([A-Za-z][A-Za-z0-9_\.]*)
     beginCaptures:
       '1': {name: keyword.control.import.resl}
     end: $
@@ -33,11 +33,11 @@ repository:
     name: storage.type.resl
 
   word:
-    match: ([A-Za-z][A-Za-z0-9_.]*)
+    match: ([A-Za-z][A-Za-z0-9_\.]*)
     name: entity.name.class.resl
 
   normal_field:
-    begin: ((int|double|string|bool)|([A-Za-z][A-Za-z0-9_.]*))\s+([A-Za-z][A-Za-z0-9_.]*)
+    begin: ((int|double|string|bool)|([A-Za-z][A-Za-z0-9_\.]*))\s+([A-Za-z][A-Za-z0-9_\.]*)
     beginCaptures:
       '2': {name: storage.type.resl}
       '3': {name: entity.name.class.resl}
@@ -50,26 +50,28 @@ repository:
     begin: (map)\s*\<
     beginCaptures:
       '1': {name: storage.type.resl}
-    end: \>\s*([A-Za-z][A-Za-z0-9_.]*)\s*=\s*(\d+)\n
+    end: \>\s*([A-Za-z][A-Za-z0-9_\.]*)\s*=\s*(\d+)
     endCaptures:
+      '1': {name: variable}
       '2': {name: constant.numeric.resl}
-      patterns:
-      - include: '#internal'
-      - include: '#word'
+    patterns:
+    - include: '#internal'
+    - include: '#word'
 
   list_field:
     begin: (list)\s*\<
     beginCaptures:
       '1': {name: storage.type.resl}
-    end: '\>\s*([A-Za-z][A-Za-z0-9_.]*)\s*=\s*(\d+)\n'
+    end: \>\s*([A-Za-z][A-Za-z0-9_\.]*)\s*=\s*(\d+)
     endCaptures:
+      '1': {name: variable}
       '2': {name: constant.numeric.resl}
     patterns:
     - include: '#internal'
     - include: '#word'
 
   event_field:
-    begin: (event)\s+([A-Za-z][A-Za-z0-9_.]*)\s*\(\s*([A-Za-z][A-Za-z0-9_.]*)?\s*\)
+    begin: (event)\s+([A-Za-z][A-Za-z0-9_\.]*)\s*\(\s*([A-Za-z][A-Za-z0-9_\.]*)?\s*\)
     beginCaptures:
       '1': {name: keyword.operator.word}
       '2': {name: variable}
@@ -79,7 +81,7 @@ repository:
       '1': {name: constant.numeric.resl}
 
   command_field:
-    begin: (command)\s+([A-Za-z][A-Za-z0-9_.]*)\s*\(([A-Za-z][A-Za-z0-9_.]*)\)\s*([A-Za-z][A-Za-z0-9_.]*)?
+    begin: (command)\s+([A-Za-z][A-Za-z0-9_\.]*)\s*\(([A-Za-z][A-Za-z0-9_\.]*)?\)\s*([A-Za-z][A-Za-z0-9_\.]*)?
     beginCaptures:
       '1': {name: keyword.operator.word}
       '2': {name: variable}
