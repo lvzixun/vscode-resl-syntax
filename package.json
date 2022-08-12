@@ -1,27 +1,42 @@
 {
-    "name": "vscode-resl",
-    "publisher": "zixun",
-    "displayName": "resl",
-    "description": "resl syntaxes",
-    "version": "0.0.7",
-    "engines": {
-        "vscode": "^1.31.0"
-    },
-    "repository": "https://github.com/lvzixun/vscode-resl-syntax",
-    "categories": [
-        "Programming Languages"
-    ],
-    "contributes": {
-        "languages": [{
-            "id": "resl",
-            "aliases": ["resl", "resl"],
-            "extensions": [".resl"],
-            "configuration": "./language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "resl",
-            "scopeName": "source.resl",
-            "path": "./syntaxes/resl.tmLanguage"
-        }]
-    }
+	"name": "vscode-resl",
+	"publisher": "zixun",
+	"displayName": "resl",
+	"description": "resl syntaxes",
+	"version": "0.0.7",
+	"engines": {
+		"vscode": "^1.31.0"
+	},
+	"repository": "https://github.com/lvzixun/vscode-resl-syntax",
+	"categories": [
+		"Programming Languages"
+	],
+	"contributes": {
+		"languages": [
+			{
+				"id": "resl",
+				"aliases": [
+					"resl",
+					"resl"
+				],
+				"extensions": [
+					".resl"
+				],
+				"configuration": "./language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "resl",
+				"scopeName": "source.resl",
+				"path": "./syntaxes/resl.tmLanguage"
+			}
+		]
+	},
+	"__metadata": {
+		"id": "8e852a58-b2be-4078-9176-7e0609dbf48b",
+		"publisherDisplayName": "lvzixun",
+		"publisherId": "61b7d0b5-e1b2-4057-889a-47cecb74b9e5",
+		"isPreReleaseVersion": false
+	}
 }

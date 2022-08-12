@@ -374,7 +374,7 @@
           <key>4</key>
           <dict>
             <key>name</key>
-            <string>entity.name.class.resl</string>
+            <string>variable.parameter.resl</string>
           </dict>
           <key>5</key>
           <dict>
@@ -448,7 +448,7 @@
           <key>4</key>
           <dict>
             <key>name</key>
-            <string>entity.name.class.resl</string>
+            <string>variable.parameter.resl</string>
           </dict>
           <key>5</key>
           <dict>
@@ -466,7 +466,7 @@
           <key>1</key>
           <dict>
             <key>name</key>
-            <string>keyword.operator.word</string>
+            <string>storage.type.struct.resl</string>
           </dict>
           <key>2</key>
           <dict>
@@ -509,7 +509,7 @@
           <key>1</key>
           <dict>
             <key>name</key>
-            <string>keyword.operator.word</string>
+            <string>storage.type.class.resl</string>
           </dict>
           <key>2</key>
           <dict>

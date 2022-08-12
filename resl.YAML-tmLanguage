@@ -120,7 +120,7 @@ repository:
       '1': {name: keyword.operator.word}
       '2': {name: variable.function.resl}
       '3': {name: variable.parameter.resl}
-      '4': {name: entity.name.class.resl}
+      '4': {name: variable.parameter.resl}
       '5': {name: constant.numeric.resl}
 
   enum_field:
@@ -142,13 +142,13 @@ repository:
       '1': {name: keyword.operator.word}
       '2': {name: variable.function.resl}
       '3': {name: variable.parameter.resl}
-      '4': {name: entity.name.class.resl}
+      '4': {name: variable.parameter.resl}
       '5': {name: constant.numeric.resl}
 
   type:
     begin: (type)\s+([A-Za-z][A-Za-z0-9_\.]*)\s*\{
     beginCaptures:
-      '1': {name: keyword.operator.word}
+      '1': {name: storage.type.struct.resl}
       '2': {name: entity.name.struct.resl}
     end: \}
     patterns:
@@ -161,7 +161,7 @@ repository:
   component:
     begin: (component)\s+([A-Za-z][A-Za-z0-9_\.]*)\s*(\d+)\s*\{
     beginCaptures:
-      '1': {name: keyword.operator.word}
+      '1': {name: storage.type.class.resl}
       '2': {name: entity.name.class.resl}
       '3': {name: constant.numeric.resl}
     end: \}
