@@ -3,7 +3,7 @@
 	"publisher": "zixun",
 	"displayName": "resl",
 	"description": "resl syntaxes",
-	"version": "0.0.7",
+	"version": "0.1.0",
 	"engines": {
 		"vscode": "^1.31.0"
 	},
