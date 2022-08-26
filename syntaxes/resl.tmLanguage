@@ -36,6 +36,10 @@
       </dict>
       <dict>
         <key>include</key>
+        <string>#extend</string>
+      </dict>
+      <dict>
+        <key>include</key>
         <string>#enum</string>
       </dict>
       <dict>
@@ -497,6 +501,61 @@
           <dict>
             <key>include</key>
             <string>#type</string>
+          </dict>
+        </array>
+      </dict>
+      <key>extend</key>
+      <dict>
+        <key>begin</key>
+        <string>(extend)\s+([A-Za-z][A-Za-z0-9_\.]*)\s*\{</string>
+        <key>beginCaptures</key>
+        <dict>
+          <key>1</key>
+          <dict>
+            <key>name</key>
+            <string>storage.type.class.resl</string>
+          </dict>
+          <key>2</key>
+          <dict>
+            <key>name</key>
+            <string>entity.name.class.resl</string>
+          </dict>
+        </dict>
+        <key>end</key>
+        <string>\}</string>
+        <key>patterns</key>
+        <array>
+          <dict>
+            <key>include</key>
+            <string>#comment</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#map_field</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#list_field</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#event_field</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#command_field</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#normal_field</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#attribute_field</string>
+          </dict>
+          <dict>
+            <key>include</key>
+            <string>#option_field</string>
           </dict>
         </array>
       </dict>

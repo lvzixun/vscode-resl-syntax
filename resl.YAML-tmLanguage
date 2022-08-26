@@ -9,8 +9,10 @@ patterns:
 - include: '#import'
 - include: '#type'
 - include: '#component'
+- include: '#extend'
 - include: '#enum'
 - include: '#service'
+
 repository:
   comment:
     patterns:
@@ -157,6 +159,22 @@ repository:
     - include: '#map_field'
     - include: '#list_field'
     - include: '#type'
+
+  extend:
+    begin: (extend)\s+([A-Za-z][A-Za-z0-9_\.]*)\s*\{
+    beginCaptures:
+      '1': {name: storage.type.class.resl}
+      '2': {name: entity.name.class.resl}
+    end: \}
+    patterns:
+    - include: '#comment'
+    - include: '#map_field'
+    - include: '#list_field'
+    - include: '#event_field'
+    - include: '#command_field'
+    - include: '#normal_field'
+    - include: '#attribute_field'
+    - include: '#option_field'
 
   component:
     begin: (component)\s+([A-Za-z][A-Za-z0-9_\.]*)\s*(\d+)\s*\{
